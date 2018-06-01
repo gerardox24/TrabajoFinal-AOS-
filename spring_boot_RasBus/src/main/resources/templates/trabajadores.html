@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<h1 class="card-header" th:text="${title}"></h1>
+			<div class="card-body">
+				<div class="form-group">
+					<a class="btn btn-primary btn-xs" th:href="@{/trabajadores/add}">Crear Trabajador</a>
+					<a class="btn btn-primary btn-xs" th:href="@{/cargos/}">Ver Cargos</a>
+				</div>
+				<table class="table table-bordered">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Fecha de contratacion</th>
+							<th scope="col">Fecha de fin</th>
+							<th scope="col">Cargo</th>
+							<th scope="col">Jefe Directo</th>
+							<th scope="col">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="trabajador: ${trabajadores}">
+							<td th:text="${trabajador.trabajadorID}"></td>
+							<td th:text="${trabajador.fechaContratacion}"></td>
+							<td th:text="${trabajador.fechaFinContrato}"></td>
+							<td th:text="${trabajador.cargoID}"></td>
+							<td th:text="${trabajador.reportsTo}"></td>
+							<td></td>
+							<td><a th:href="@{/trabajadores/edit/__${trabajador.trabajadorID}__}">Edit</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

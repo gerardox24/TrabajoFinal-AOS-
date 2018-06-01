@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<h1 class="card-header" th:text="${title}"></h1>
+			<div class="card-body">
+				<div class="form-group">
+					<a class="btn btn-primary btn-xs" th:href="@{/buses/add}">Crear
+						Bus</a>
+				</div>
+				<table class="table table-bordered">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Matricula</th>
+							<th scope="col">Asientos</th>
+							<th scope="col">Fecha de Compra</th>
+							<th scope="col">Foto</th>
+							<th scope="col">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bus: ${buses}">
+							<td th:text="${bus.busID}"></td>
+							<td th:text="${bus.matricula}"></td>
+							<td th:text="${bus.cantAsiento}"></td>
+							<td th:text="${bus.fechaCompra}"></td>
+							<td></td>
+							<td><a th:href="@{/buses/edit/__${bus.busID}__}">Edit</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

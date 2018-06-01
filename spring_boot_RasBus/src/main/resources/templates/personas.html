@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<h1 class="card-header" th:text="${title}"></h1>
+			<div class="card-body">
+				<div class="form-group">
+					<a class="btn btn-primary btn-xs" th:href="@{/personas/add}">Crear Persona</a>
+				</div>
+				<table class="table table-bordered">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Celular</th>
+							<th scope="col">Telefono fijo</th>
+							<th scope="col">Fecha de nacimiento</th>
+							<th scope="col">Correo</th>
+							<th scope="col">Direccion</th>
+							<th scope="col">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="persona: ${personas}">
+							<td th:text="${persona.personaID}"></td>
+							<td th:text="${persona.nombre}"></td>
+							<td th:text="${persona.apellido}"></td>
+							<td th:text="${persona.celular}"></td>
+							<td th:text="${persona.telefonoFijo}"></td>
+							<td th:text="${persona.fechaNacimiento}"></td>
+							<td th:text="${persona.correo}"></td>
+							<td th:text="${persona.direccion}"></td>
+							<td><a th:href="@{/personas/edit/__${persona.personaID}__}">Edit</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
